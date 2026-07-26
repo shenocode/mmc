@@ -1,4 +1,4 @@
-# MMC - Método Movimento Cotidiano — Brainstorm de Design
+# Método MOVIC - Movimento Cotidiano — Brainstorm de Design
 
 ## Três Abordagens Estilísticas
 
@@ -23,7 +23,7 @@ Design orgânico contemporâneo inspirado na educação somática e na dança co
 
 ### Core Principles
 1. **Fluidez como linguagem visual** — Elementos nunca são estáticos; transições suaves, curvas orgânicas, e ritmos que evocam movimento.
-2. **Terra e presença** — Cores que evocam chão, pele, natureza; o site deve "aterrar" o visitante assim como o MMC propõe em seus encontros.
+2. **Terra e presença** — Cores que evocam chão, pele, natureza; o site deve "aterrar" o visitante assim como o MOVIC propõe em seus encontros.
 3. **Hierarquia através do ritmo** — Espaçamento generoso cria pausas naturais; o scroll deve sentir-se como uma respiração.
 4. **Calor humano** — O design deve sentir-se acolhedor e acessível, não frio ou corporativo.
 
@@ -60,7 +60,7 @@ Interações que imitam a respiração: suaves, orgânicas, não mecânicas. Hov
 - **Accent:** "Cormorant Garamond" italic para citações e destaques
 
 ### Brand Essence
-MMC é educação corporal que transforma o cotidiano em arte — para adultos que buscam presença, criatividade e bem-estar através do movimento consciente.
+MOVIC é educação corporal que transforma o cotidiano em arte — para adultos que buscam presença, criatividade e bem-estar através do movimento consciente.
 **3 adjetivos:** Orgânico, Consciente, Transformador
 
 ### Brand Voice

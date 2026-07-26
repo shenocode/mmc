@@ -1,23 +1,36 @@
 /**
- * Contatos e links públicos do MMC.
+ * Contatos e links públicos do Método MOVIC.
  * Ajuste via variáveis de ambiente (veja .env.example) ou edite os defaults.
  */
 const whatsappNumber =
   import.meta.env.VITE_WHATSAPP_NUMBER?.replace(/\D/g, "") || "5511993397398";
 
 export const site = {
-  name: "MMC – Método Movimento Cotidiano",
-  shortName: "MMC",
-  email: import.meta.env.VITE_CONTACT_EMAIL || "contato@mmc-metodo.com",
+  name: "Método MOVIC – Movimento Cotidiano",
+  shortName: "MOVIC",
+  tagline: "Movimento Cotidiano",
+  email: import.meta.env.VITE_CONTACT_EMAIL || "contato@movic-metodo.com",
   whatsappNumber,
   instagramUrl:
-    import.meta.env.VITE_INSTAGRAM_URL || "https://instagram.com/mmc.metodo",
-  formspreeId: import.meta.env.VITE_FORMSPREE_ID || "",
+    import.meta.env.VITE_INSTAGRAM_URL || "https://instagram.com/movic.metodo",
   assets: {
-    logo: "/images/logo-mmc.png",
+    logo: "/images/logo-mc-v3.png",
     hero: "/images/hero-dance.jpg",
     metodo: "/images/metodo-grupo.jpg",
-    mediadora: "/images/sheila-rocha.jpg",
+    mediadora: [
+      {
+        src: "/images/sheila-rocha.jpg",
+        alt: "Sheila Rocha, mediadora do Método MOVIC",
+      },
+      {
+        src: "/images/sheila-parque.jpg",
+        alt: "Sheila Rocha em movimento no parque",
+      },
+      {
+        src: "/images/sheila-grupo.jpg",
+        alt: "Sheila Rocha em vivência com grupo de educadoras",
+      },
+    ],
     pilares: {
       corpo: "/images/pilar-corpo.jpg",
       movimento: "/images/pilar-movimento.jpg",
@@ -54,7 +67,7 @@ export function buildInterestMessage(data: {
   };
 
   const lines = [
-    "Olá! Demonstro interesse no MMC.",
+    "Olá! Demonstro interesse no Método MOVIC.",
     "",
     `Nome: ${data.nome}`,
     `E-mail: ${data.email}`,

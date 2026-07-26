@@ -1,5 +1,5 @@
 /**
- * Header navigation for MMC site
+ * Header navigation for Método MOVIC
  * Style: Organic, warm, grounded. Terracotta accent on sand/cream background.
  */
 import { useState, useEffect } from "react";
@@ -53,11 +53,11 @@ export default function Header() {
           onClick={() => scrollTo("#hero")}
           className="flex items-center gap-2 group"
         >
-          <span className="h-10 w-10 rounded-full overflow-hidden bg-[#EBD9A0] flex items-center justify-center flex-shrink-0 transition-transform duration-300 group-hover:scale-105">
+          <span className="h-10 w-10 rounded-full overflow-hidden flex items-center justify-center flex-shrink-0 transition-transform duration-300 group-hover:scale-105">
             <img
               src={site.assets.logo}
-              alt="MMC"
-              className="h-full w-full object-cover"
+              alt={site.shortName}
+              className="h-[110%] w-[110%] max-w-none object-cover"
             />
           </span>
           <div className="flex flex-col items-start text-left leading-none">
@@ -68,7 +68,7 @@ export default function Header() {
                   : "text-[#3D2E1C]"
               }`}
             >
-              MMC
+              {site.shortName}
             </span>
             <span
               className={`text-[0.6rem] tracking-[0.2em] uppercase font-body font-medium transition-colors duration-300 ${
@@ -77,7 +77,7 @@ export default function Header() {
                   : "text-[#7A8B6F]"
               }`}
             >
-              Método Movimento Cotidiano
+              {site.tagline}
             </span>
           </div>
         </button>

@@ -16,7 +16,7 @@ function WhatsAppIcon({ className }: { className?: string }) {
 export default function WhatsAppFloat() {
   return (
     <a
-      href={whatsappUrl("Olá! Gostaria de saber mais sobre o MMC.")}
+      href={whatsappUrl("Olá! Gostaria de saber mais sobre o Método MOVIC.")}
       target="_blank"
       rel="noopener noreferrer"
       aria-label="Falar no WhatsApp"

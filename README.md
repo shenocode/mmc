@@ -1,6 +1,6 @@
-# MMC – Método Movimento Cotidiano
+# Método MOVIC – Movimento Cotidiano
 
-Site institucional do Método Movimento Cotidiano: educação corporal, dança contemporânea e práticas somáticas para adultos.
+Site institucional do Método MOVIC: educação corporal, dança contemporânea e práticas somáticas para adultos.
 
 ## Stack
 
@@ -36,7 +36,9 @@ Edite `.env` (ou `client/src/lib/site.ts`):
 - `VITE_WHATSAPP_NUMBER` — só dígitos, com DDI (ex.: `5511987654321`)
 - `VITE_CONTACT_EMAIL`
 - `VITE_INSTAGRAM_URL`
-- `VITE_FORMSPREE_ID` — se definido, o formulário envia via Formspree; senão, abre o WhatsApp com a mensagem preenchida
+- `VITE_SUPABASE_URL` / `VITE_SUPABASE_ANON_KEY` — grava leads no Supabase; o formulário ainda abre o WhatsApp
+
+Schema SQL: `supabase/schema.sql` (rodar no SQL Editor do projeto).
 
 ## Estrutura
 

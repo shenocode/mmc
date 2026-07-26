@@ -1,5 +1,5 @@
 /**
- * MMC - Método Movimento Cotidiano
+ * Método MOVIC – Movimento Cotidiano
  * Style: Tessitura Orgânica - Organic, warm, earthy palette
  * Colors: Sand (#F5F0E8), Terracotta (#C4704B), Sage (#7A8B6F), Ochre (#D4A843), Warm Brown (#3D2E1C)
  * Fonts: Playfair Display (headings), DM Sans (body), Cormorant Garamond (accent)
@@ -9,9 +9,11 @@ import FadeIn from "@/components/FadeIn";
 import OrganicDivider from "@/components/OrganicDivider";
 import WhatsAppFloat from "@/components/WhatsAppFloat";
 import { site, whatsappUrl, buildInterestMessage } from "@/lib/site";
-import { ArrowRight, ChevronDown, Sparkles, Heart, Eye, Music2, Users, Brain, Palette, TreePine, Check, ExternalLink } from "lucide-react";
-import { motion } from "framer-motion";
-import { useState } from "react";
+import { createLead } from "@/lib/leads";
+import { isSupabaseConfigured } from "@/lib/supabase";
+import { ArrowRight, ChevronDown, ChevronLeft, ChevronRight, Sparkles, Heart, Eye, Music2, Users, Brain, Palette, TreePine, Check, ExternalLink } from "lucide-react";
+import { AnimatePresence, motion } from "framer-motion";
+import { useEffect, useState } from "react";
 
 /* ─────────── HERO ─────────── */
 function HeroSection() {
@@ -36,7 +38,7 @@ function HeroSection() {
             transition={{ duration: 0.8, ease: [0.23, 1, 0.32, 1] }}
           >
             <p className="text-[#D4A843] font-body text-sm tracking-[0.3em] uppercase mb-6 font-medium">
-              Método Movimento Cotidiano
+              Método MOVIC · Movimento Cotidiano
             </p>
           </motion.div>
 
@@ -118,7 +120,7 @@ function MetodoSection() {
                 <span className="italic text-[#C4704B]">cotidiano</span>
               </h2>
               <p className="text-[#3D2E1C]/70 text-lg font-body leading-relaxed mb-6">
-                O MMC utiliza os movimentos presentes na vida cotidiana como
+                O MOVIC utiliza os movimentos presentes na vida cotidiana como
                 ponto de partida para o desenvolvimento da consciência corporal,
                 da criatividade, da presença e da autorregulação emocional.
               </p>
@@ -223,7 +225,7 @@ function PilaresSection() {
     {
       title: "Corpo",
       subtitle: "Consciência e Presença",
-      desc: "Consciência corporal, respiração, mobilidade, percepção e presença. A base de toda experiência do MMC.",
+      desc: "Consciência corporal, respiração, mobilidade, percepção e presença. A base de toda experiência do MOVIC.",
       image: site.assets.pilares.corpo,
       color: "#C4704B",
       icon: Heart,
@@ -511,7 +513,7 @@ function AplicacoesSection() {
     {
       id: "formacao",
       title: "Formação de facilitadores",
-      desc: "Programa futuro para formação de profissionais do MMC.",
+      desc: "Programa futuro para formação de profissionais do MOVIC.",
       icon: Eye,
     },
   ];
@@ -524,7 +526,7 @@ function AplicacoesSection() {
             Aplicações
           </p>
           <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl text-white leading-tight mb-6">
-            Onde o MMC{" "}
+            Onde o MOVIC{" "}
             <span className="italic text-[#D4A843]">se encaixa</span>
           </h2>
           <p className="text-white/60 text-lg font-body">
@@ -558,21 +560,88 @@ function AplicacoesSection() {
 
 /* ─────────── A MEDIADORA ─────────── */
 function MediadoraSection() {
+  const photos = site.assets.mediadora;
+  const [index, setIndex] = useState(0);
+  const [paused, setPaused] = useState(false);
+
+  useEffect(() => {
+    if (paused || photos.length <= 1) return;
+    const id = window.setInterval(() => {
+      setIndex((i) => (i + 1) % photos.length);
+    }, 3000);
+    return () => window.clearInterval(id);
+  }, [paused, photos.length]);
+
+  const go = (dir: -1 | 1) => {
+    setIndex((i) => (i + dir + photos.length) % photos.length);
+  };
+
   return (
     <section id="mediadora" className="relative bg-[#F5F0E8] py-20 lg:py-32">
       <div className="container">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
           <FadeIn direction="left">
-            <div className="relative max-w-md mx-auto lg:mx-0">
-              <div className="aspect-[3/4] rounded-3xl overflow-hidden shadow-2xl shadow-[#2C2419]/10">
-                <img
-                  src={site.assets.mediadora}
-                  alt="Sheila Rocha, mediadora do Método Movimento Cotidiano"
-                  className="w-full h-full object-cover object-top"
-                />
+            <div
+              className="relative max-w-md mx-auto lg:mx-0"
+              onMouseEnter={() => setPaused(true)}
+              onMouseLeave={() => setPaused(false)}
+              onFocusCapture={() => setPaused(true)}
+              onBlurCapture={(e) => {
+                if (!e.currentTarget.contains(e.relatedTarget as Node)) {
+                  setPaused(false);
+                }
+              }}
+            >
+              <div className="relative aspect-[3/4] rounded-3xl overflow-hidden shadow-2xl shadow-[#2C2419]/10 bg-[#E8DFD0]">
+                <AnimatePresence mode="wait" initial={false}>
+                  <motion.img
+                    key={photos[index].src}
+                    src={photos[index].src}
+                    alt={photos[index].alt}
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    transition={{ duration: 0.55, ease: [0.23, 1, 0.32, 1] }}
+                    className="absolute inset-0 w-full h-full object-cover object-center"
+                  />
+                </AnimatePresence>
+
+                <button
+                  type="button"
+                  onClick={() => go(-1)}
+                  aria-label="Foto anterior"
+                  className="absolute left-3 top-1/2 -translate-y-1/2 z-10 w-9 h-9 rounded-full bg-[#2C2419]/25 backdrop-blur-sm text-white/90 flex items-center justify-center hover:bg-[#2C2419]/45 transition-colors duration-300"
+                >
+                  <ChevronLeft size={18} />
+                </button>
+                <button
+                  type="button"
+                  onClick={() => go(1)}
+                  aria-label="Próxima foto"
+                  className="absolute right-3 top-1/2 -translate-y-1/2 z-10 w-9 h-9 rounded-full bg-[#2C2419]/25 backdrop-blur-sm text-white/90 flex items-center justify-center hover:bg-[#2C2419]/45 transition-colors duration-300"
+                >
+                  <ChevronRight size={18} />
+                </button>
+
+                <div className="absolute bottom-4 left-1/2 -translate-x-1/2 z-10 flex gap-2">
+                  {photos.map((photo, i) => (
+                    <button
+                      key={photo.src}
+                      type="button"
+                      onClick={() => setIndex(i)}
+                      aria-label={`Ir para foto ${i + 1}`}
+                      aria-current={i === index}
+                      className={`h-1.5 rounded-full transition-all duration-300 ${
+                        i === index
+                          ? "w-5 bg-white"
+                          : "w-1.5 bg-white/45 hover:bg-white/70"
+                      }`}
+                    />
+                  ))}
+                </div>
               </div>
-              <div className="absolute -bottom-6 -right-6 w-24 h-24 bg-[#C4704B]/20 rounded-full blur-xl" />
-              <div className="absolute -top-4 -left-4 w-16 h-16 bg-[#7A8B6F]/20 rounded-full blur-lg" />
+              <div className="absolute -bottom-6 -right-6 w-24 h-24 bg-[#C4704B]/20 rounded-full blur-xl pointer-events-none" />
+              <div className="absolute -top-4 -left-4 w-16 h-16 bg-[#7A8B6F]/20 rounded-full blur-lg pointer-events-none" />
             </div>
           </FadeIn>
 
@@ -585,25 +654,22 @@ function MediadoraSection() {
                 {site.mediadora.name}
               </h2>
               <p className="text-[#7A8B6F] font-body text-base sm:text-lg mb-6">
-                Mestre em Educação e Lazer · Artista visual · Mediadora cultural
+                Mestre em Educação e Lazer · Artista e pesquisadora do movimento
               </p>
               <p className="text-[#3D2E1C]/70 text-lg font-body leading-relaxed mb-5">
-                Criadora do Método Movimento Cotidiano. Investiga práticas
-                artísticas participativas com linguagens transdisciplinares em
-                ambientes de ensino, corporativos e comunitários.
+                Criadora do Método MOVIC. Investiga práticas
+                artísticas participativas e o movimento como abordagem de
+                transformação pessoal.
               </p>
               <p className="text-[#3D2E1C]/70 text-lg font-body leading-relaxed mb-5">
-                Formada em Ballet por nove anos e fundadora de uma escola de
-                dança aos 16, transitou pelo desenho, pintura, gravura,
-                escultura e arte digital. Após uma trajetória corporativa —
-                incluindo marketing e trabalho em emissora de TV — dedicou-se
-                integralmente às práticas artísticas e à produção cultural.
+                Após uma trajetória corporativa consolidada, dedicou-se
+                integralmente às práticas artísticas, produção cultural e
+                educação.
               </p>
               <p className="text-[#3D2E1C]/70 text-lg font-body leading-relaxed mb-8">
                 Mestre em Educação e Lazer pela Escola Superior de Coimbra,
-                desenvolve abordagens de educação através das artes
-                participativas e transdisciplinares, promovendo espaços de
-                encontro com relevância social e educação ao longo da vida.
+                desenvolve abordagens transdisciplinares no Brasil e em
+                Portugal, promovendo espaços de encontro.
               </p>
               <a
                 href={site.mediadora.siteUrl}
@@ -659,7 +725,7 @@ function FundamentacaoSection() {
             <span className="italic text-[#C4704B]">teóricos</span>
           </h2>
           <p className="text-[#3D2E1C]/60 text-lg font-body">
-            Uma rede de referências que inspira o desenvolvimento do MMC,
+            Uma rede de referências que inspira o desenvolvimento do MOVIC,
             integrando arte, educação, estudos do movimento, educação somática,
             neurociências e perspectivas decoloniais.
           </p>
@@ -714,7 +780,7 @@ function NR1Section() {
                 <p className="text-[#3D2E1C]/70 font-body leading-relaxed mb-4">
                   As atualizações da Norma Regulamentadora nº 1 reforçam a
                   importância da gestão dos fatores de risco psicossociais no
-                  ambiente de trabalho. O MMC insere-se como uma proposta de
+                  ambiente de trabalho. O MOVIC insere-se como uma proposta de
                   educação corporal e prática artística que pode integrar
                   programas institucionais de promoção da saúde e bem-estar.
                 </p>
@@ -744,6 +810,7 @@ function ContatoSection() {
     mensagem: "",
   });
   const [submitted, setSubmitted] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
   const [errors, setErrors] = useState<Record<string, string>>({});
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
@@ -763,16 +830,32 @@ function ContatoSection() {
     return newErrors;
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     const newErrors = validate();
     if (Object.keys(newErrors).length > 0) {
       setErrors(newErrors);
       return;
     }
-    const message = buildInterestMessage(formData);
-    window.open(whatsappUrl(message), "_blank", "noopener,noreferrer");
-    setSubmitted(true);
+
+    setSubmitting(true);
+    setErrors({});
+
+    try {
+      if (isSupabaseConfigured) {
+        await createLead(formData);
+      }
+      const message = buildInterestMessage(formData);
+      window.open(whatsappUrl(message), "_blank", "noopener,noreferrer");
+      setSubmitted(true);
+    } catch (err) {
+      console.error("Erro ao registrar lead:", err);
+      setErrors({
+        form: "Não foi possível registrar seu interesse. Tente de novo ou fale pelo WhatsApp.",
+      });
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   if (submitted) {
@@ -789,12 +872,12 @@ function ContatoSection() {
                 Interesse <span className="italic text-[#D4A843]">registrado</span>
               </h2>
               <p className="text-white/70 text-lg font-body leading-relaxed max-w-md mx-auto mb-8">
-                Sua mensagem foi preparada no WhatsApp. Envie para concluirmos
-                o contato e receber as informações do programa.
+                Recebemos seus dados e preparamos a mensagem no WhatsApp.
+                Envie para concluirmos o contato e receber as informações do programa.
               </p>
               <p className="text-white/50 text-sm font-body">
                 Enquanto isso, siga-nos nas redes sociais para acompanhar as
-                novidades do MMC.
+                novidades do MOVIC.
               </p>
             </div>
           </FadeIn>
@@ -1009,17 +1092,24 @@ function ContatoSection() {
                   />
                 </div>
 
+                {errors.form && (
+                  <p className="text-[#E8A090] text-sm font-body text-center">
+                    {errors.form}
+                  </p>
+                )}
+
                 <button
                   type="submit"
-                  className="w-full bg-[#C4704B] text-white px-6 py-3.5 rounded-full text-base font-medium hover:bg-[#B06040] transition-all duration-300 hover:shadow-lg hover:shadow-[#C4704B]/30 active:scale-[0.98] flex items-center justify-center gap-2"
+                  disabled={submitting}
+                  className="w-full bg-[#C4704B] text-white px-6 py-3.5 rounded-full text-base font-medium hover:bg-[#B06040] transition-all duration-300 hover:shadow-lg hover:shadow-[#C4704B]/30 active:scale-[0.98] flex items-center justify-center gap-2 disabled:opacity-60 disabled:pointer-events-none"
                 >
-                  Demonstrar interesse
-                  <ArrowRight size={18} />
+                  {submitting ? "Registrando..." : "Demonstrar interesse"}
+                  {!submitting && <ArrowRight size={18} />}
                 </button>
 
                 <p className="text-white/30 text-xs font-body text-center">
-                  Ao enviar, você será direcionado ao WhatsApp com sua mensagem
-                  pronta. Seus dados não serão compartilhados.
+                  Ao enviar, registramos seu interesse e abrimos o WhatsApp com
+                  a mensagem pronta. Seus dados não serão compartilhados.
                 </p>
               </form>
             </FadeIn>
@@ -1037,19 +1127,19 @@ function Footer() {
       <div className="container">
         <div className="flex flex-col lg:flex-row items-center justify-between gap-6">
           <div className="flex items-center gap-3">
-            <span className="h-8 w-8 rounded-full overflow-hidden bg-[#EBD9A0] flex items-center justify-center flex-shrink-0">
+            <span className="h-8 w-8 rounded-full overflow-hidden flex items-center justify-center flex-shrink-0">
               <img
                 src={site.assets.logo}
-                alt="MMC"
-                className="h-full w-full object-cover"
+                alt={site.shortName}
+                className="h-[110%] w-[110%] max-w-none object-cover"
               />
             </span>
             <div className="text-left">
               <span className="font-logo text-white text-lg font-bold tracking-wide">
-                MMC
+                {site.shortName}
               </span>
               <span className="block text-white/40 text-xs tracking-wider">
-                Método Movimento Cotidiano
+                {site.tagline}
               </span>
             </div>
           </div>
@@ -1059,7 +1149,7 @@ function Footer() {
           </p>
 
           <p className="text-white/30 text-xs font-body">
-            © {new Date().getFullYear()} MMC. Todos os direitos reservados.
+            © {new Date().getFullYear()} {site.shortName}. Todos os direitos reservados.
           </p>
         </div>
 
