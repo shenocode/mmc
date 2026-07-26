@@ -61,6 +61,8 @@ export function buildInterestMessage(data: {
     "turma-adultos": "Turma aberta para adultos",
     empresas: "Programa corporativo / Empresas",
     institucional: "Instituição cultural / Universidade",
+    "ensino-formal":
+      "Instituições de ensino e professores do Ensino Formal (certificado opcional)",
     social: "Projeto social / Comunitário",
     facilitador: "Formação de facilitadores",
     outro: "Outro",

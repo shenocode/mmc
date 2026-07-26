@@ -11,7 +11,7 @@ import WhatsAppFloat from "@/components/WhatsAppFloat";
 import { site, whatsappUrl, buildInterestMessage } from "@/lib/site";
 import { createLead } from "@/lib/leads";
 import { isSupabaseConfigured } from "@/lib/supabase";
-import { ArrowRight, ChevronDown, ChevronLeft, ChevronRight, Sparkles, Heart, Eye, Music2, Users, Brain, Palette, TreePine, Check, ExternalLink } from "lucide-react";
+import { ArrowRight, ChevronDown, ChevronLeft, ChevronRight, Sparkles, Heart, Eye, Music2, Users, Brain, Palette, TreePine, Check, ExternalLink, GraduationCap } from "lucide-react";
 import { AnimatePresence, motion } from "framer-motion";
 import { useEffect, useState } from "react";
 
@@ -504,6 +504,11 @@ function AplicacoesSection() {
       title: "Universidades e extensão",
       desc: "Projetos de pesquisa, ensino e extensão universitária em dança e educação corporal.",
       icon: Sparkles,
+    },
+    {
+      title: "Instituições de ensino e professores do Ensino Formal",
+      desc: "Vivências e formação para escolas e docentes, com certificado de participação opcional.",
+      icon: GraduationCap,
     },
     {
       title: "Projetos sociais e comunitários",
@@ -1055,6 +1060,9 @@ function ContatoSection() {
                     </option>
                     <option value="institucional" className="bg-[#3D2E1C]">
                       Instituição cultural / Universidade
+                    </option>
+                    <option value="ensino-formal" className="bg-[#3D2E1C]">
+                      Instituições de ensino e professores do Ensino Formal (certificado opcional)
                     </option>
                     <option value="social" className="bg-[#3D2E1C]">
                       Projeto social / Comunitário

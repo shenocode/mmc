@@ -11,6 +11,7 @@ create table if not exists public.leads (
     'turma-adultos',
     'empresas',
     'institucional',
+    'ensino-formal',
     'social',
     'facilitador',
     'outro'
