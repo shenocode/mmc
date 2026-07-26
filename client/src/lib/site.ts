@@ -56,7 +56,7 @@ export const site = {
         "https://www.google.com/maps/search/?api=1&query=Rua+Alferes+Jos%C3%A9+Caetano,+1448,+Centro,+Piracicaba,+SP",
       startDate: "Início em 12 de agosto",
       schedule: "Todas as quartas-feiras · 18h30 às 19h30",
-      price: "R$ 159,00",
+      price: "R$ 132,00",
       priceNote: "mensal",
       duration: "60 minutos",
     },
