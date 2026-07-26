@@ -510,13 +510,14 @@ function LocaisSection() {
           {site.locais.map((local, i) => (
             <FadeIn key={local.id} delay={i * 0.1} className="h-full">
               <article className="h-full flex flex-col sm:flex-row bg-white/70 backdrop-blur-sm border border-[#D4C5B0]/50 rounded-3xl overflow-hidden shadow-sm hover:shadow-md hover:border-[#C4704B]/25 transition-all duration-500">
-                <div className="sm:w-[42%] flex-shrink-0 flex items-center justify-center bg-white px-5 py-6 sm:px-6 sm:py-8 border-b sm:border-b-0 sm:border-r border-[#D4C5B0]/40">
+              <article className="h-full flex flex-col sm:flex-row sm:items-center bg-white/70 backdrop-blur-sm border border-[#D4C5B0]/50 rounded-3xl overflow-hidden shadow-sm hover:shadow-md hover:border-[#C4704B]/25 transition-all duration-500">
+                <div className="sm:w-[48%] flex-shrink-0 flex items-center justify-center bg-white p-2 sm:p-3 border-b sm:border-b-0 sm:border-r border-[#D4C5B0]/40">
                   <img
                     src={local.logo}
                     alt={`Logo ${local.name}`}
                     loading="lazy"
                     decoding="async"
-                    className="w-full h-auto max-h-36 sm:max-h-52 object-contain"
+                    className="w-full h-auto object-contain"
                   />
                 </div>
 
