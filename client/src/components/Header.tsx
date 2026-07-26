@@ -8,11 +8,11 @@ import { motion, AnimatePresence } from "framer-motion";
 import { site } from "@/lib/site";
 
 const navLinks = [
+  { href: "#locais", label: "Locais" },
   { href: "#metodo", label: "O Método" },
   { href: "#pilares", label: "Pilares" },
   { href: "#programa", label: "Programa" },
   { href: "#estruturas", label: "Como Funciona" },
-  { href: "#locais", label: "Locais" },
   { href: "#aplicacoes", label: "Aplicações" },
   { href: "#mediadora", label: "A Mediadora" },
   { href: "#contato", label: "Contato" },
