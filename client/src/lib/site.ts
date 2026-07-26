@@ -47,7 +47,7 @@ export const site = {
     {
       id: "bolsa-amarela",
       name: "Instituto Bolsa Amarela",
-      logo: "/images/logo-bolsa-amarela.png",
+      logo: "/images/logo-bolsa-amarela-v2.png",
       status: "Inscrições abertas",
       neighborhood: "Centro",
       city: "Piracicaba/SP",
