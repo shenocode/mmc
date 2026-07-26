@@ -1044,8 +1044,8 @@ function Footer() {
                 className="h-full w-full object-cover"
               />
             </span>
-            <div>
-              <span className="font-display text-white text-lg font-semibold">
+            <div className="text-left">
+              <span className="font-logo text-white text-lg font-bold tracking-wide">
                 MMC
               </span>
               <span className="block text-white/40 text-xs tracking-wider">

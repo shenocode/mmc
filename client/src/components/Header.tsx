@@ -60,17 +60,21 @@ export default function Header() {
               className="h-full w-full object-cover"
             />
           </span>
-          <div className="flex flex-col leading-none">
+          <div className="flex flex-col items-start text-left leading-none">
             <span
-              className={`font-display text-xl font-semibold transition-colors duration-300 ${
-                mobileOpen ? "text-[#EBD9A0]" : "text-[#3D2E1C]"
+              className={`font-logo text-xl font-bold tracking-wide transition-colors duration-300 ${
+                mobileOpen || !scrolled
+                  ? "text-[#F5F0E8]"
+                  : "text-[#3D2E1C]"
               }`}
             >
               MMC
             </span>
             <span
               className={`text-[0.6rem] tracking-[0.2em] uppercase font-body font-medium transition-colors duration-300 ${
-                mobileOpen ? "text-[#EBD9A0]/70" : "text-[#7A8B6F]"
+                mobileOpen || !scrolled
+                  ? "text-[#EBD9A0]/80"
+                  : "text-[#7A8B6F]"
               }`}
             >
               Método Movimento Cotidiano
@@ -84,7 +88,11 @@ export default function Header() {
             <button
               key={link.href}
               onClick={() => scrollTo(link.href)}
-              className="text-sm font-medium text-[#3D2E1C]/80 hover:text-[#C4704B] transition-colors duration-300 relative after:absolute after:bottom-[-4px] after:left-0 after:w-0 after:h-[2px] after:bg-[#C4704B] after:transition-all after:duration-300 hover:after:w-full"
+              className={`text-sm font-medium transition-colors duration-300 relative after:absolute after:bottom-[-4px] after:left-0 after:w-0 after:h-[2px] after:bg-[#C4704B] after:transition-all after:duration-300 hover:after:w-full ${
+                scrolled
+                  ? "text-[#3D2E1C]/80 hover:text-[#C4704B]"
+                  : "text-[#F5F0E8]/90 hover:text-white"
+              }`}
             >
               {link.label}
             </button>
@@ -101,7 +109,7 @@ export default function Header() {
         <button
           onClick={() => setMobileOpen(!mobileOpen)}
           className={`lg:hidden p-2 transition-colors duration-300 ${
-            mobileOpen ? "text-[#EBD9A0]" : "text-[#3D2E1C]"
+            mobileOpen || !scrolled ? "text-[#F5F0E8]" : "text-[#3D2E1C]"
           }`}
           aria-label={mobileOpen ? "Fechar menu" : "Abrir menu"}
           aria-expanded={mobileOpen}
