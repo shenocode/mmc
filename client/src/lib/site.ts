@@ -43,12 +43,34 @@ export const site = {
     siteUrl: "https://www.sherocha.com",
     instagramUrl: "https://www.instagram.com/sheila_projects/",
   },
+  locais: [
+    {
+      id: "bolsa-amarela",
+      name: "Instituto Bolsa Amarela",
+      logo: "/images/logo-bolsa-amarela.png",
+      status: "Inscrições abertas",
+      neighborhood: "Centro",
+      city: "Piracicaba/SP",
+      address: "Rua Alferes José Caetano, 1448 — Centro — Piracicaba/SP",
+      mapsUrl:
+        "https://www.google.com/maps/search/?api=1&query=Rua+Alferes+Jos%C3%A9+Caetano,+1448,+Centro,+Piracicaba,+SP",
+      startDate: "Início em 12 de agosto",
+      schedule: "Todas as quartas-feiras · 18h30 às 19h30",
+      price: "R$ 159,00",
+      priceNote: "mensal",
+      duration: "60 minutos",
+    },
+  ],
 } as const;
 
 export function whatsappUrl(message?: string) {
   const base = `https://wa.me/${site.whatsappNumber}`;
   if (!message) return base;
   return `${base}?text=${encodeURIComponent(message)}`;
+}
+
+export function buildReservationMessage(localName: string) {
+  return `Olá! Gostaria de reservar uma vaga na turma do Método MOVIC no ${localName}.`;
 }
 
 export function buildInterestMessage(data: {

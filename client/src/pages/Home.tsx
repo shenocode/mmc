@@ -8,10 +8,10 @@ import Header from "@/components/Header";
 import FadeIn from "@/components/FadeIn";
 import OrganicDivider from "@/components/OrganicDivider";
 import WhatsAppFloat from "@/components/WhatsAppFloat";
-import { site, whatsappUrl, buildInterestMessage } from "@/lib/site";
+import { site, whatsappUrl, buildInterestMessage, buildReservationMessage } from "@/lib/site";
 import { createLead } from "@/lib/leads";
 import { isSupabaseConfigured } from "@/lib/supabase";
-import { ArrowRight, ChevronDown, ChevronLeft, ChevronRight, Sparkles, Heart, Eye, Music2, Users, Brain, Palette, TreePine, Check, ExternalLink, GraduationCap } from "lucide-react";
+import { ArrowRight, ChevronDown, ChevronLeft, ChevronRight, Sparkles, Heart, Eye, Music2, Users, Brain, Palette, TreePine, Check, ExternalLink, GraduationCap, MapPin, Calendar, Clock, MessageCircle } from "lucide-react";
 import { AnimatePresence, motion } from "framer-motion";
 import { useEffect, useState } from "react";
 
@@ -475,6 +475,114 @@ function EstruturaSection() {
                   </p>
                 </div>
               </div>
+            </FadeIn>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ─────────── LOCAIS ─────────── */
+function LocaisSection() {
+  return (
+    <section id="locais" className="relative bg-[#F5F0E8] py-20 lg:py-32">
+      <div className="container">
+        <FadeIn className="text-center max-w-2xl mx-auto mb-16">
+          <p className="text-[#C4704B] font-body text-sm tracking-[0.2em] uppercase mb-4 font-medium">
+            Locais
+          </p>
+          <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl text-[#3D2E1C] leading-tight mb-6">
+            Onde o MOVIC{" "}
+            <span className="italic text-[#C4704B]">já acontece</span>
+          </h2>
+          <p className="text-[#3D2E1C]/60 text-lg font-body">
+            Turmas presenciais em espaços parceiros. Escolha o local e reserve
+            sua vaga pelo WhatsApp.
+          </p>
+        </FadeIn>
+
+        <div
+          className={`grid gap-6 mx-auto ${
+            site.locais.length === 1
+              ? "max-w-md"
+              : "sm:grid-cols-2 lg:grid-cols-3 max-w-5xl"
+          }`}
+        >
+          {site.locais.map((local, i) => (
+            <FadeIn key={local.id} delay={i * 0.1} className="h-full">
+              <article className="h-full flex flex-col bg-white/70 backdrop-blur-sm border border-[#D4C5B0]/50 rounded-3xl p-7 shadow-sm hover:shadow-md hover:border-[#C4704B]/25 transition-all duration-500">
+                <div className="flex items-start justify-between gap-3 mb-6">
+                  <div className="h-14 flex items-center">
+                    <img
+                      src={local.logo}
+                      alt={`Logo ${local.name}`}
+                      loading="lazy"
+                      decoding="async"
+                      className="max-h-14 w-auto max-w-[200px] object-contain object-left"
+                    />
+                  </div>
+                  <span className="flex-shrink-0 bg-[#7A8B6F]/15 text-[#5F6F55] px-3 py-1 rounded-full text-[0.65rem] font-medium tracking-wide uppercase">
+                    {local.status}
+                  </span>
+                </div>
+
+                <h3 className="font-display text-xl text-[#3D2E1C] mb-1">
+                  {local.name}
+                </h3>
+                <p className="text-[#7A8B6F] font-body text-sm mb-6">
+                  {local.neighborhood} · {local.city}
+                </p>
+
+                <ul className="space-y-3.5 mb-8 flex-1">
+                  <li>
+                    <a
+                      href={local.mapsUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-start gap-3 group"
+                    >
+                      <MapPin className="w-4 h-4 text-[#C4704B] mt-0.5 flex-shrink-0" />
+                      <span className="text-[#3D2E1C]/70 font-body text-sm leading-relaxed group-hover:text-[#C4704B] transition-colors underline-offset-2 group-hover:underline">
+                        {local.address}
+                      </span>
+                    </a>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <Calendar className="w-4 h-4 text-[#C4704B] mt-0.5 flex-shrink-0" />
+                    <span className="text-[#3D2E1C]/70 font-body text-sm leading-relaxed">
+                      {local.startDate}
+                      <span className="block text-[#3D2E1C]/50 mt-0.5">
+                        {local.schedule}
+                      </span>
+                    </span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <Clock className="w-4 h-4 text-[#C4704B] mt-0.5 flex-shrink-0" />
+                    <span className="text-[#3D2E1C]/70 font-body text-sm leading-relaxed">
+                      {local.duration} por encontro
+                    </span>
+                  </li>
+                  <li className="flex items-baseline gap-2 pt-1">
+                    <span className="font-display text-2xl text-[#3D2E1C]">
+                      {local.price}
+                    </span>
+                    <span className="text-[#3D2E1C]/45 font-body text-sm">
+                      / {local.priceNote}
+                    </span>
+                  </li>
+                </ul>
+
+                <a
+                  href={whatsappUrl(buildReservationMessage(local.name))}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center justify-center gap-2 w-full bg-[#C4704B] text-white px-6 py-3.5 rounded-full text-sm font-medium hover:bg-[#B06040] transition-all duration-300 hover:shadow-lg hover:shadow-[#C4704B]/25 active:scale-[0.98]"
+                >
+                  <MessageCircle className="w-4 h-4" />
+                  Reservar no WhatsApp
+                </a>
+              </article>
             </FadeIn>
           ))}
         </div>
@@ -1210,6 +1318,7 @@ export default function Home() {
       <ProgramaSection />
       <OrganicDivider color="#F5F0E8" />
       <EstruturaSection />
+      <LocaisSection />
       <OrganicDivider color="#2C2419" flip />
       <AplicacoesSection />
       <NR1Section />

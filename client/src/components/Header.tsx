@@ -12,6 +12,7 @@ const navLinks = [
   { href: "#pilares", label: "Pilares" },
   { href: "#programa", label: "Programa" },
   { href: "#estruturas", label: "Como Funciona" },
+  { href: "#locais", label: "Locais" },
   { href: "#aplicacoes", label: "Aplicações" },
   { href: "#mediadora", label: "A Mediadora" },
   { href: "#contato", label: "Contato" },
