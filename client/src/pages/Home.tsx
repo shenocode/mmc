@@ -509,7 +509,6 @@ function LocaisSection() {
         >
           {site.locais.map((local, i) => (
             <FadeIn key={local.id} delay={i * 0.1} className="h-full">
-              <article className="h-full flex flex-col sm:flex-row bg-white/70 backdrop-blur-sm border border-[#D4C5B0]/50 rounded-3xl overflow-hidden shadow-sm hover:shadow-md hover:border-[#C4704B]/25 transition-all duration-500">
               <article className="h-full flex flex-col sm:flex-row sm:items-center bg-white/70 backdrop-blur-sm border border-[#D4C5B0]/50 rounded-3xl overflow-hidden shadow-sm hover:shadow-md hover:border-[#C4704B]/25 transition-all duration-500">
                 <div className="sm:w-[48%] flex-shrink-0 flex items-center justify-center bg-white p-1 sm:p-1.5 border-b sm:border-b-0 sm:border-r border-[#D4C5B0]/40">
                   <img
