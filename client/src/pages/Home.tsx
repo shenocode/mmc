@@ -877,8 +877,8 @@ function ContatoSection() {
                 Interesse <span className="italic text-[#D4A843]">registrado</span>
               </h2>
               <p className="text-white/70 text-lg font-body leading-relaxed max-w-md mx-auto mb-8">
-                Recebemos seus dados e preparamos a mensagem no WhatsApp.
-                Envie para concluirmos o contato e receber as informações do programa.
+                Recebemos seus dados e a mensagem enviada pelo WhatsApp.
+                Em breve você receberá as informações do programa.
               </p>
               <p className="text-white/50 text-sm font-body">
                 Enquanto isso, siga-nos nas redes sociais para acompanhar as
