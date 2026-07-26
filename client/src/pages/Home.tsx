@@ -1068,6 +1068,9 @@ function ContatoSection() {
                     <option value="" className="bg-[#3D2E1C]">
                       Selecione...
                     </option>
+                    <option value="ensino-formal" className="bg-[#3D2E1C]">
+                      Professores (ensino formal)
+                    </option>
                     <option value="turma-adultos" className="bg-[#3D2E1C]">
                       Turma aberta para adultos
                     </option>
@@ -1076,9 +1079,6 @@ function ContatoSection() {
                     </option>
                     <option value="institucional" className="bg-[#3D2E1C]">
                       Instituição cultural / Universidade
-                    </option>
-                    <option value="ensino-formal" className="bg-[#3D2E1C]">
-                      Ensino Formal (certificado opcional)
                     </option>
                     <option value="social" className="bg-[#3D2E1C]">
                       Projeto social / Comunitário
@@ -1212,10 +1212,10 @@ export default function Home() {
       <EstruturaSection />
       <OrganicDivider color="#2C2419" flip />
       <AplicacoesSection />
+      <NR1Section />
       <OrganicDivider color="#F5F0E8" />
       <MediadoraSection />
       <FundamentacaoSection />
-      <NR1Section />
       <ContatoSection />
       <Footer />
       <WhatsAppFloat />

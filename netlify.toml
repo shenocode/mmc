@@ -5,6 +5,7 @@
 [build.environment]
   NODE_VERSION = "22"
   PNPM_VERSION = "10.4.1"
+  VITE_SITE_URL = "https://mmc-she.netlify.app"
 
 # SPA (wouter): rotas do cliente caem no index.html
 [[redirects]]

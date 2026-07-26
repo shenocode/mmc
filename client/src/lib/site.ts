@@ -15,6 +15,7 @@ export const site = {
     import.meta.env.VITE_INSTAGRAM_URL || "https://instagram.com/movic.metodo",
   assets: {
     logo: "/images/logo-mc-v3.png",
+    ogImage: "/images/og-image.png",
     hero: "/images/hero-dance.jpg",
     metodo: "/images/metodo-grupo.jpg",
     mediadora: [
@@ -58,11 +59,10 @@ export function buildInterestMessage(data: {
   mensagem: string;
 }) {
   const interesseLabel: Record<string, string> = {
+    "ensino-formal": "Professores (ensino formal)",
     "turma-adultos": "Turma aberta para adultos",
     empresas: "Programa corporativo / Empresas",
     institucional: "Instituição cultural / Universidade",
-    "ensino-formal":
-      "Instituições de ensino e professores do Ensino Formal (certificado opcional)",
     social: "Projeto social / Comunitário",
     facilitador: "Formação de facilitadores",
     outro: "Outro",
