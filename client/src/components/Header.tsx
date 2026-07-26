@@ -13,7 +13,7 @@ const navLinks = [
   { href: "#programa", label: "Programa" },
   { href: "#estruturas", label: "Como Funciona" },
   { href: "#aplicacoes", label: "Aplicações" },
-  { href: "#formacao", label: "Formação" },
+  { href: "#mediadora", label: "A Mediadora" },
   { href: "#contato", label: "Contato" },
 ];
 
@@ -30,15 +30,21 @@ export default function Header() {
   const scrollTo = (href: string) => {
     setMobileOpen(false);
     const el = document.querySelector(href);
-    if (el) el.scrollIntoView({ behavior: "smooth" });
+    if (!el) return;
+    const headerOffset = window.innerWidth >= 1024 ? 80 : 64;
+    const top =
+      el.getBoundingClientRect().top + window.scrollY - headerOffset;
+    window.scrollTo({ top, behavior: "smooth" });
   };
 
   return (
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-        scrolled
-          ? "bg-[#F5F0E8]/90 backdrop-blur-md shadow-sm"
-          : "bg-transparent"
+        mobileOpen
+          ? "bg-[#2C2419]"
+          : scrolled
+            ? "bg-[#F5F0E8]/90 backdrop-blur-md shadow-sm"
+            : "bg-transparent"
       }`}
     >
       <div className="container flex items-center justify-between h-16 lg:h-20">
@@ -47,16 +53,26 @@ export default function Header() {
           onClick={() => scrollTo("#hero")}
           className="flex items-center gap-2 group"
         >
-          <img
-            src="/manus-storage/logo-mmc_58a8ff03.png"
-            alt="MMC"
-            className="h-10 w-10 object-contain transition-transform duration-300 group-hover:scale-105"
-          />
+          <span className="h-10 w-10 rounded-full overflow-hidden bg-[#EBD9A0] flex items-center justify-center flex-shrink-0 transition-transform duration-300 group-hover:scale-105">
+            <img
+              src={site.assets.logo}
+              alt="MMC"
+              className="h-full w-full object-cover"
+            />
+          </span>
           <div className="flex flex-col leading-none">
-            <span className="font-display text-xl font-semibold text-[#3D2E1C]">
+            <span
+              className={`font-display text-xl font-semibold transition-colors duration-300 ${
+                mobileOpen ? "text-[#EBD9A0]" : "text-[#3D2E1C]"
+              }`}
+            >
               MMC
             </span>
-            <span className="text-[0.6rem] tracking-[0.2em] uppercase text-[#7A8B6F] font-body font-medium">
+            <span
+              className={`text-[0.6rem] tracking-[0.2em] uppercase font-body font-medium transition-colors duration-300 ${
+                mobileOpen ? "text-[#EBD9A0]/70" : "text-[#7A8B6F]"
+              }`}
+            >
               Método Movimento Cotidiano
             </span>
           </div>
@@ -84,8 +100,11 @@ export default function Header() {
         {/* Mobile Menu Button */}
         <button
           onClick={() => setMobileOpen(!mobileOpen)}
-          className="lg:hidden p-2 text-[#3D2E1C]"
-          aria-label="Menu"
+          className={`lg:hidden p-2 transition-colors duration-300 ${
+            mobileOpen ? "text-[#EBD9A0]" : "text-[#3D2E1C]"
+          }`}
+          aria-label={mobileOpen ? "Fechar menu" : "Abrir menu"}
+          aria-expanded={mobileOpen}
         >
           {mobileOpen ? <X size={24} /> : <Menu size={24} />}
         </button>
@@ -99,24 +118,18 @@ export default function Header() {
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.3, ease: [0.23, 1, 0.32, 1] }}
-            className="lg:hidden bg-[#F5F0E8]/95 backdrop-blur-md border-t border-[#D4C5B0]"
+            className="lg:hidden bg-[#F5F0E8] border-t border-[#D4C5B0]/40"
           >
-            <nav className="container py-6 flex flex-col gap-4">
+            <nav className="container py-4 flex flex-col" aria-label="Menu principal">
               {navLinks.map((link) => (
                 <button
                   key={link.href}
                   onClick={() => scrollTo(link.href)}
-                  className="text-left text-base font-medium text-[#3D2E1C] hover:text-[#C4704B] transition-colors py-2"
+                  className="text-left text-base font-semibold text-[#3D2E1C] hover:text-[#C4704B] transition-colors py-3"
                 >
                   {link.label}
                 </button>
               ))}
-              <button
-                onClick={() => scrollTo("#contato")}
-                className="bg-[#C4704B] text-white px-6 py-3 rounded-full text-sm font-medium mt-2"
-              >
-                Comece sua jornada
-              </button>
             </nav>
           </motion.div>
         )}

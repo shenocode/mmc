@@ -114,6 +114,15 @@
   input[type="radio"]:not(:disabled) {
     @apply cursor-pointer;
   }
+
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 5rem;
+  }
+
+  section[id] {
+    scroll-margin-top: 5rem;
+  }
 }
 
 @layer components {

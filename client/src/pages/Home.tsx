@@ -7,8 +7,9 @@
 import Header from "@/components/Header";
 import FadeIn from "@/components/FadeIn";
 import OrganicDivider from "@/components/OrganicDivider";
+import WhatsAppFloat from "@/components/WhatsAppFloat";
 import { site, whatsappUrl, buildInterestMessage } from "@/lib/site";
-import { ArrowRight, ChevronDown, Sparkles, Heart, Eye, Music2, Users, Brain, Palette, TreePine, Check, Instagram } from "lucide-react";
+import { ArrowRight, ChevronDown, Sparkles, Heart, Eye, Music2, Users, Brain, Palette, TreePine, Check, ExternalLink } from "lucide-react";
 import { motion } from "framer-motion";
 import { useState } from "react";
 
@@ -19,7 +20,7 @@ function HeroSection() {
       {/* Background Image */}
       <div className="absolute inset-0">
         <img
-          src="/manus-storage/hero-dance_cbb2501f.jpg"
+          src={site.assets.hero}
           alt=""
           className="w-full h-full object-cover"
         />
@@ -140,7 +141,7 @@ function MetodoSection() {
             <div className="relative">
               <div className="aspect-[4/5] rounded-3xl overflow-hidden shadow-2xl shadow-[#2C2419]/10">
                 <img
-                  src="/manus-storage/program-body-awareness_02d2282f.jpg"
+                  src={site.assets.metodo}
                   alt="Consciência corporal"
                   className="w-full h-full object-cover"
                 />
@@ -223,7 +224,7 @@ function PilaresSection() {
       title: "Corpo",
       subtitle: "Consciência e Presença",
       desc: "Consciência corporal, respiração, mobilidade, percepção e presença. A base de toda experiência do MMC.",
-      image: "/manus-storage/program-body-awareness_02d2282f.jpg",
+      image: site.assets.pilares.corpo,
       color: "#C4704B",
       icon: Heart,
     },
@@ -231,7 +232,7 @@ function PilaresSection() {
       title: "Movimento",
       subtitle: "Exploração e Criação",
       desc: "Improvisação, exploração, dança contemporânea, criatividade e repertório corporal.",
-      image: "/manus-storage/pilar-movement_f086770d.jpg",
+      image: site.assets.pilares.movimento,
       color: "#7A8B6F",
       icon: Sparkles,
     },
@@ -239,7 +240,7 @@ function PilaresSection() {
       title: "Integração",
       subtitle: "Conexão e Bem-estar",
       desc: "Autorregulação emocional, colaboração, comunicação não verbal e bem-estar.",
-      image: "/manus-storage/pilar-integration_cf2c361f.jpg",
+      image: site.assets.pilares.integracao,
       color: "#D4A843",
       icon: Users,
     },
@@ -476,7 +477,12 @@ function EstruturaSection() {
 
 /* ─────────── APLICAÇÕES ─────────── */
 function AplicacoesSection() {
-  const aplicacoes = [
+  const aplicacoes: {
+    id?: string;
+    title: string;
+    desc: string;
+    icon: typeof Users;
+  }[] = [
     {
       title: "Turmas abertas para adultos",
       desc: "Espaço de criação e desenvolvimento pessoal para quem busca conectar corpo e emoção.",
@@ -503,6 +509,7 @@ function AplicacoesSection() {
       icon: Heart,
     },
     {
+      id: "formacao",
       title: "Formação de facilitadores",
       desc: "Programa futuro para formação de profissionais do MMC.",
       icon: Eye,
@@ -529,7 +536,10 @@ function AplicacoesSection() {
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {aplicacoes.map((app, i) => (
             <FadeIn key={app.title} delay={i * 0.08}>
-              <div className="bg-white/5 border border-white/10 rounded-2xl p-7 hover:bg-white/8 transition-all duration-500 group">
+              <div
+                id={app.id}
+                className="bg-white/5 border border-white/10 rounded-2xl p-7 hover:bg-white/8 transition-all duration-500 group scroll-mt-20"
+              >
                 <app.icon className="w-8 h-8 text-[#D4A843] mb-4 group-hover:text-[#C4704B] transition-colors duration-300" />
                 <h3 className="font-display text-lg text-white mb-2">
                   {app.title}
@@ -540,6 +550,72 @@ function AplicacoesSection() {
               </div>
             </FadeIn>
           ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ─────────── A MEDIADORA ─────────── */
+function MediadoraSection() {
+  return (
+    <section id="mediadora" className="relative bg-[#F5F0E8] py-20 lg:py-32">
+      <div className="container">
+        <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+          <FadeIn direction="left">
+            <div className="relative max-w-md mx-auto lg:mx-0">
+              <div className="aspect-[3/4] rounded-3xl overflow-hidden shadow-2xl shadow-[#2C2419]/10">
+                <img
+                  src={site.assets.mediadora}
+                  alt="Sheila Rocha, mediadora do Método Movimento Cotidiano"
+                  className="w-full h-full object-cover object-top"
+                />
+              </div>
+              <div className="absolute -bottom-6 -right-6 w-24 h-24 bg-[#C4704B]/20 rounded-full blur-xl" />
+              <div className="absolute -top-4 -left-4 w-16 h-16 bg-[#7A8B6F]/20 rounded-full blur-lg" />
+            </div>
+          </FadeIn>
+
+          <FadeIn direction="right" delay={0.15}>
+            <div>
+              <p className="text-[#C4704B] font-body text-sm tracking-[0.2em] uppercase mb-4 font-medium">
+                A Mediadora
+              </p>
+              <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl text-[#3D2E1C] leading-tight mb-6">
+                {site.mediadora.name}
+              </h2>
+              <p className="text-[#7A8B6F] font-body text-base sm:text-lg mb-6">
+                Mestre em Educação e Lazer · Artista visual · Mediadora cultural
+              </p>
+              <p className="text-[#3D2E1C]/70 text-lg font-body leading-relaxed mb-5">
+                Criadora do Método Movimento Cotidiano. Investiga práticas
+                artísticas participativas com linguagens transdisciplinares em
+                ambientes de ensino, corporativos e comunitários.
+              </p>
+              <p className="text-[#3D2E1C]/70 text-lg font-body leading-relaxed mb-5">
+                Formada em Ballet por nove anos e fundadora de uma escola de
+                dança aos 16, transitou pelo desenho, pintura, gravura,
+                escultura e arte digital. Após uma trajetória corporativa —
+                incluindo marketing e trabalho em emissora de TV — dedicou-se
+                integralmente às práticas artísticas e à produção cultural.
+              </p>
+              <p className="text-[#3D2E1C]/70 text-lg font-body leading-relaxed mb-8">
+                Mestre em Educação e Lazer pela Escola Superior de Coimbra,
+                desenvolve abordagens de educação através das artes
+                participativas e transdisciplinares, promovendo espaços de
+                encontro com relevância social e educação ao longo da vida.
+              </p>
+              <a
+                href={site.mediadora.siteUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 border border-[#C4704B]/40 text-[#C4704B] px-6 py-3 rounded-full text-base font-medium hover:bg-[#C4704B] hover:text-white transition-all duration-300"
+              >
+                Conheça mais em sherocha.com
+                <ExternalLink size={16} />
+              </a>
+            </div>
+          </FadeIn>
         </div>
       </div>
     </section>
@@ -694,6 +770,8 @@ function ContatoSection() {
       setErrors(newErrors);
       return;
     }
+    const message = buildInterestMessage(formData);
+    window.open(whatsappUrl(message), "_blank", "noopener,noreferrer");
     setSubmitted(true);
   };
 
@@ -711,8 +789,8 @@ function ContatoSection() {
                 Interesse <span className="italic text-[#D4A843]">registrado</span>
               </h2>
               <p className="text-white/70 text-lg font-body leading-relaxed max-w-md mx-auto mb-8">
-                Recebemos sua manifestação de interesse. Entraremos em contato
-                em breve com mais informações sobre o programa.
+                Sua mensagem foi preparada no WhatsApp. Envie para concluirmos
+                o contato e receber as informações do programa.
               </p>
               <p className="text-white/50 text-sm font-body">
                 Enquanto isso, siga-nos nas redes sociais para acompanhar as
@@ -750,7 +828,7 @@ function ContatoSection() {
                   calendário.
                 </p>
 
-                <div className="space-y-4 mb-8">
+                <div className="space-y-4">
                   <div className="flex items-center gap-3">
                     <span className="w-8 h-8 rounded-full bg-[#C4704B]/20 flex items-center justify-center flex-shrink-0">
                       <span className="w-2 h-2 rounded-full bg-[#C4704B]" />
@@ -774,28 +852,6 @@ function ContatoSection() {
                     <p className="text-white/70 font-body text-sm">
                       Turmas para adultos e programas corporativos
                     </p>
-                  </div>
-                </div>
-
-                <div className="border-t border-white/10 pt-6">
-                  <p className="text-white/40 text-sm font-body mb-3">
-                    Ou fale diretamente:
-                  </p>
-                  <div className="flex flex-col sm:flex-row gap-3">
-                    <a
-                      href="mailto:contato@mmc-metodo.com"
-                      className="inline-flex items-center justify-center gap-2 border border-white/20 text-white/80 px-5 py-2.5 rounded-full text-sm font-medium hover:bg-white/5 transition-all duration-300"
-                    >
-                      E-mail
-                    </a>
-                    <a
-                      href="https://wa.me/5500000000000"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center justify-center gap-2 border border-white/20 text-white/80 px-5 py-2.5 rounded-full text-sm font-medium hover:bg-white/5 transition-all duration-300"
-                    >
-                      WhatsApp
-                    </a>
                   </div>
                 </div>
               </div>
@@ -962,8 +1018,8 @@ function ContatoSection() {
                 </button>
 
                 <p className="text-white/30 text-xs font-body text-center">
-                  Ao enviar, você concorda em receber informações sobre o MMC.
-                  Seus dados não serão compartilhados.
+                  Ao enviar, você será direcionado ao WhatsApp com sua mensagem
+                  pronta. Seus dados não serão compartilhados.
                 </p>
               </form>
             </FadeIn>
@@ -981,11 +1037,13 @@ function Footer() {
       <div className="container">
         <div className="flex flex-col lg:flex-row items-center justify-between gap-6">
           <div className="flex items-center gap-3">
-            <img
-              src="/manus-storage/logo-mmc_58a8ff03.png"
-              alt="MMC"
-              className="h-8 w-8 object-contain"
-            />
+            <span className="h-8 w-8 rounded-full overflow-hidden bg-[#EBD9A0] flex items-center justify-center flex-shrink-0">
+              <img
+                src={site.assets.logo}
+                alt="MMC"
+                className="h-full w-full object-cover"
+              />
+            </span>
             <div>
               <span className="font-display text-white text-lg font-semibold">
                 MMC
@@ -1004,6 +1062,17 @@ function Footer() {
             © {new Date().getFullYear()} MMC. Todos os direitos reservados.
           </p>
         </div>
+
+        <p className="mt-8 text-center text-white/30 text-xs font-body">
+          <a
+            href="https://www.sherocha.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hover:text-white/50 transition-colors"
+          >
+            She | Abordagens artísticas multidisciplinares
+          </a>
+        </p>
       </div>
     </footer>
   );
@@ -1028,10 +1097,12 @@ export default function Home() {
       <OrganicDivider color="#2C2419" flip />
       <AplicacoesSection />
       <OrganicDivider color="#F5F0E8" />
+      <MediadoraSection />
       <FundamentacaoSection />
       <NR1Section />
       <ContatoSection />
       <Footer />
+      <WhatsAppFloat />
     </div>
   );
 }

@@ -1,0 +1,13 @@
+[build]
+  command = "pnpm build"
+  publish = "dist/public"
+
+[build.environment]
+  NODE_VERSION = "22"
+  PNPM_VERSION = "10.4.1"
+
+# SPA (wouter): rotas do cliente caem no index.html
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200

@@ -3,7 +3,7 @@
  * Ajuste via variáveis de ambiente (veja .env.example) ou edite os defaults.
  */
 const whatsappNumber =
-  import.meta.env.VITE_WHATSAPP_NUMBER?.replace(/\D/g, "") || "5511999999999";
+  import.meta.env.VITE_WHATSAPP_NUMBER?.replace(/\D/g, "") || "5511993397398";
 
 export const site = {
   name: "MMC – Método Movimento Cotidiano",
@@ -16,12 +16,18 @@ export const site = {
   assets: {
     logo: "/images/logo-mmc.png",
     hero: "/images/hero-dance.jpg",
-    metodo: "/images/pilar-corpo.jpg",
+    metodo: "/images/metodo-grupo.jpg",
+    mediadora: "/images/sheila-rocha.jpg",
     pilares: {
       corpo: "/images/pilar-corpo.jpg",
       movimento: "/images/pilar-movimento.jpg",
       integracao: "/images/pilar-integracao.jpg",
     },
+  },
+  mediadora: {
+    name: "Sheila Rocha",
+    siteUrl: "https://www.sherocha.com",
+    instagramUrl: "https://www.instagram.com/sheila_projects/",
   },
 } as const;
 
