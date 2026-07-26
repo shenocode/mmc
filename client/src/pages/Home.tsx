@@ -24,6 +24,8 @@ function HeroSection() {
         <img
           src={site.assets.hero}
           alt=""
+          fetchPriority="high"
+          decoding="async"
           className="w-full h-full object-cover"
         />
         <div className="absolute inset-0 bg-gradient-to-r from-[#2C2419]/80 via-[#2C2419]/60 to-[#2C2419]/40" />
@@ -145,6 +147,8 @@ function MetodoSection() {
                 <img
                   src={site.assets.metodo}
                   alt="Consciência corporal"
+                  loading="lazy"
+                  decoding="async"
                   className="w-full h-full object-cover"
                 />
               </div>
@@ -273,6 +277,8 @@ function PilaresSection() {
                   <img
                     src={pilar.image}
                     alt={pilar.title}
+                    loading="lazy"
+                    decoding="async"
                     className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-[#2C2419]/70 via-transparent to-transparent" />
@@ -603,6 +609,8 @@ function MediadoraSection() {
                     key={photos[index].src}
                     src={photos[index].src}
                     alt={photos[index].alt}
+                    loading="lazy"
+                    decoding="async"
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     exit={{ opacity: 0 }}
@@ -615,20 +623,20 @@ function MediadoraSection() {
                   type="button"
                   onClick={() => go(-1)}
                   aria-label="Foto anterior"
-                  className="absolute left-3 top-1/2 -translate-y-1/2 z-10 w-9 h-9 rounded-full bg-[#2C2419]/25 backdrop-blur-sm text-white/90 flex items-center justify-center hover:bg-[#2C2419]/45 transition-colors duration-300"
+                  className="absolute left-3 top-1/2 -translate-y-1/2 z-10 w-11 h-11 rounded-full bg-[#2C2419]/25 backdrop-blur-sm text-white/90 flex items-center justify-center hover:bg-[#2C2419]/45 transition-colors duration-300"
                 >
-                  <ChevronLeft size={18} />
+                  <ChevronLeft size={22} />
                 </button>
                 <button
                   type="button"
                   onClick={() => go(1)}
                   aria-label="Próxima foto"
-                  className="absolute right-3 top-1/2 -translate-y-1/2 z-10 w-9 h-9 rounded-full bg-[#2C2419]/25 backdrop-blur-sm text-white/90 flex items-center justify-center hover:bg-[#2C2419]/45 transition-colors duration-300"
+                  className="absolute right-3 top-1/2 -translate-y-1/2 z-10 w-11 h-11 rounded-full bg-[#2C2419]/25 backdrop-blur-sm text-white/90 flex items-center justify-center hover:bg-[#2C2419]/45 transition-colors duration-300"
                 >
-                  <ChevronRight size={18} />
+                  <ChevronRight size={22} />
                 </button>
 
-                <div className="absolute bottom-4 left-1/2 -translate-x-1/2 z-10 flex gap-2">
+                <div className="absolute bottom-4 left-1/2 -translate-x-1/2 z-10 flex gap-1">
                   {photos.map((photo, i) => (
                     <button
                       key={photo.src}
@@ -636,12 +644,16 @@ function MediadoraSection() {
                       onClick={() => setIndex(i)}
                       aria-label={`Ir para foto ${i + 1}`}
                       aria-current={i === index}
-                      className={`h-1.5 rounded-full transition-all duration-300 ${
-                        i === index
-                          ? "w-5 bg-white"
-                          : "w-1.5 bg-white/45 hover:bg-white/70"
-                      }`}
-                    />
+                      className="flex items-center justify-center min-h-11 min-w-11"
+                    >
+                      <span
+                        className={`h-1.5 rounded-full transition-all duration-300 ${
+                          i === index
+                            ? "w-5 bg-white"
+                            : "w-1.5 bg-white/45"
+                        }`}
+                      />
+                    </button>
                   ))}
                 </div>
               </div>
@@ -910,10 +922,9 @@ function ContatoSection() {
                   <span className="italic text-[#D4A843]">interesse</span>
                 </h2>
                 <p className="text-white/70 text-lg font-body leading-relaxed mb-8">
-                  Preencha o formulário ao lado para demonstrar interesse no
-                  programa Dança Cotidiana e Autorregulação Emocional.
-                  Entraremos em contato com informações sobre turmas, valores e
-                  calendário.
+                  Preencha o formulário para demonstrar interesse no programa
+                  Dança Cotidiana e Autorregulação Emocional. Entraremos em
+                  contato com informações sobre turmas, valores e calendário.
                 </p>
 
                 <div className="space-y-4">
@@ -967,6 +978,7 @@ function ContatoSection() {
                     type="text"
                     id="nome"
                     name="nome"
+                    autoComplete="name"
                     value={formData.nome}
                     onChange={handleChange}
                     placeholder="Seu nome"
@@ -995,6 +1007,8 @@ function ContatoSection() {
                     type="email"
                     id="email"
                     name="email"
+                    autoComplete="email"
+                    inputMode="email"
                     value={formData.email}
                     onChange={handleChange}
                     placeholder="seu@email.com"
@@ -1023,6 +1037,8 @@ function ContatoSection() {
                     type="tel"
                     id="telefone"
                     name="telefone"
+                    autoComplete="tel"
+                    inputMode="tel"
                     value={formData.telefone}
                     onChange={handleChange}
                     placeholder="(00) 00000-0000"
@@ -1062,7 +1078,7 @@ function ContatoSection() {
                       Instituição cultural / Universidade
                     </option>
                     <option value="ensino-formal" className="bg-[#3D2E1C]">
-                      Instituições de ensino e professores do Ensino Formal (certificado opcional)
+                      Ensino Formal (certificado opcional)
                     </option>
                     <option value="social" className="bg-[#3D2E1C]">
                       Projeto social / Comunitário
@@ -1139,6 +1155,8 @@ function Footer() {
               <img
                 src={site.assets.logo}
                 alt={site.shortName}
+                loading="lazy"
+                decoding="async"
                 className="h-[110%] w-[110%] max-w-none object-cover"
               />
             </span>

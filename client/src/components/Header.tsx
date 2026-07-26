@@ -108,7 +108,7 @@ export default function Header() {
         {/* Mobile Menu Button */}
         <button
           onClick={() => setMobileOpen(!mobileOpen)}
-          className={`lg:hidden p-2 transition-colors duration-300 ${
+          className={`lg:hidden min-h-11 min-w-11 flex items-center justify-center transition-colors duration-300 ${
             mobileOpen || !scrolled ? "text-[#F5F0E8]" : "text-[#3D2E1C]"
           }`}
           aria-label={mobileOpen ? "Fechar menu" : "Abrir menu"}
@@ -138,6 +138,12 @@ export default function Header() {
                   {link.label}
                 </button>
               ))}
+              <button
+                onClick={() => scrollTo("#contato")}
+                className="mt-3 mb-1 bg-[#C4704B] text-white px-5 py-3.5 rounded-full text-base font-medium hover:bg-[#B06040] transition-all duration-300 active:scale-95"
+              >
+                Comece sua jornada
+              </button>
             </nav>
           </motion.div>
         )}
