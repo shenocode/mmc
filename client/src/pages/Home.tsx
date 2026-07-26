@@ -1078,7 +1078,7 @@ function ContatoSection() {
                       Programa corporativo / Empresas
                     </option>
                     <option value="institucional" className="bg-[#3D2E1C]">
-                      Instituição cultural / Universidade
+                      Instituição cultural
                     </option>
                     <option value="social" className="bg-[#3D2E1C]">
                       Projeto social / Comunitário

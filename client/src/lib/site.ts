@@ -62,7 +62,7 @@ export function buildInterestMessage(data: {
     "ensino-formal": "Professores (ensino formal)",
     "turma-adultos": "Turma aberta para adultos",
     empresas: "Programa corporativo / Empresas",
-    institucional: "Instituição cultural / Universidade",
+    institucional: "Instituição cultural",
     social: "Projeto social / Comunitário",
     facilitador: "Formação de facilitadores",
     outro: "Outro",
