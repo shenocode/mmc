@@ -399,6 +399,87 @@ function ProgramaSection() {
   );
 }
 
+/* ─────────── OFICINA ─────────── */
+function OficinaSection() {
+  const vivencias = [
+    "Chegada e presença corporal",
+    "Exploração de movimento",
+    "Improvisação guiada",
+    "Criação coletiva",
+    "Sensação de como o método funciona no corpo",
+  ];
+
+  return (
+    <section id="oficina" className="relative bg-[#3D2E1C] py-20 lg:py-32 overflow-hidden">
+      {/* Decorative blobs */}
+      <div className="absolute top-0 left-0 w-96 h-96 bg-[#7A8B6F]/10 rounded-full blur-3xl" />
+      <div className="absolute bottom-0 right-0 w-80 h-80 bg-[#C4704B]/10 rounded-full blur-3xl" />
+
+      <div className="container relative z-10">
+        <div className="grid lg:grid-cols-2 gap-12 lg:gap-20">
+          <FadeIn direction="left">
+            <div>
+              <p className="text-[#D4A843] font-body text-sm tracking-[0.2em] uppercase mb-4 font-medium">
+                Oficina de 2h30
+              </p>
+              <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl text-white leading-tight mb-6">
+                Experimente o método em uma{" "}
+                <span className="italic text-[#D4A843]">vivência</span>
+              </h2>
+              <p className="text-white/70 text-lg font-body leading-relaxed mb-8">
+                Uma oficina intensiva de 2h30 para quem quer conhecer o MOVIC na
+                prática — presença, movimento e criação em uma única sessão, sem
+                compromisso com o programa completo.
+              </p>
+
+              <div className="flex flex-wrap gap-3 mb-8">
+                <span className="bg-[#C4704B]/20 text-[#D4A843] px-4 py-2 rounded-full text-sm font-medium">
+                  2h30
+                </span>
+                <span className="bg-[#7A8B6F]/20 text-[#7A8B6F] px-4 py-2 rounded-full text-sm font-medium">
+                  Experiência única
+                </span>
+                <span className="bg-[#D4A843]/20 text-[#D4A843] px-4 py-2 rounded-full text-sm font-medium">
+                  Para experimentar
+                </span>
+              </div>
+
+              <a
+                href="#contato"
+                className="inline-flex items-center gap-2 bg-[#C4704B] text-white px-7 py-3.5 rounded-full text-base font-medium hover:bg-[#B06040] transition-all duration-300 hover:shadow-lg hover:shadow-[#C4704B]/30 active:scale-95"
+              >
+                Quero experimentar
+                <ArrowRight size={18} />
+              </a>
+            </div>
+          </FadeIn>
+
+          <FadeIn direction="right" delay={0.2}>
+            <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-3xl p-8 lg:p-10">
+              <h3 className="font-display text-xl text-[#D4A843] mb-6">
+                O que você vivencia
+              </h3>
+              <ul className="space-y-4">
+                {vivencias.map((item, i) => (
+                  <li
+                    key={i}
+                    className="flex items-start gap-3 text-white/80 font-body"
+                  >
+                    <span className="w-5 h-5 rounded-full bg-[#C4704B]/30 flex items-center justify-center flex-shrink-0 mt-0.5">
+                      <span className="w-2 h-2 rounded-full bg-[#C4704B]" />
+                    </span>
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </FadeIn>
+        </div>
+      </div>
+    </section>
+  );
+}
+
 /* ─────────── ESTRUTURA DO ENCONTRO ─────────── */
 function EstruturaSection() {
   const etapas = [
@@ -1319,6 +1400,7 @@ export default function Home() {
       <PilaresSection />
       <OrganicDivider color="#3D2E1C" flip />
       <ProgramaSection />
+      <OficinaSection />
       <OrganicDivider color="#F5F0E8" />
       <EstruturaSection />
       <OrganicDivider color="#2C2419" flip />
