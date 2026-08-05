@@ -335,7 +335,7 @@ function ProgramaSection() {
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-20">
           <FadeIn direction="left">
             <div>
-              <p className="text-[#D4A843] font-body text-sm tracking-[0.2em] uppercase mb-4 font-medium">
+              <p className="text-[#D4A843] font-body text-base sm:text-lg tracking-[0.2em] uppercase mb-4 font-semibold">
                 Programa de 12 encontros
               </p>
               <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl text-white leading-tight mb-6">
@@ -419,7 +419,7 @@ function OficinaSection() {
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-20">
           <FadeIn direction="left">
             <div>
-              <p className="text-[#D4A843] font-body text-sm tracking-[0.2em] uppercase mb-4 font-medium">
+              <p className="text-[#D4A843] font-body text-base sm:text-lg tracking-[0.2em] uppercase mb-4 font-semibold">
                 Oficina de 2h30
               </p>
               <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl text-white leading-tight mb-6">
@@ -574,7 +574,7 @@ function LocaisSection() {
             Locais
           </p>
           <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl text-[#3D2E1C] leading-tight mb-6">
-            Novos espaços{" "}
+            Novas datas e locais{" "}
             <span className="italic text-[#C4704B]">em breve</span>
           </h2>
           <p className="text-[#3D2E1C]/60 text-lg font-body">
