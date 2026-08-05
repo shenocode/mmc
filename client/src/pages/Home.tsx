@@ -90,17 +90,19 @@ function HeroSection() {
         </div>
 
         {/* Scroll indicator */}
-        <motion.div
+        <motion.a
+          href="#metodo"
+          aria-label="Explorar a próxima seção"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 1.2 }}
-          className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2"
+          className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-white/50 hover:text-white/80 transition-colors duration-300"
         >
-          <span className="text-white/50 text-xs tracking-widest uppercase">
+          <span className="text-xs tracking-widest uppercase">
             Explorar
           </span>
-          <ChevronDown className="text-white/50 animate-bounce" size={20} />
-        </motion.div>
+          <ChevronDown className="animate-bounce" size={20} />
+        </motion.a>
       </div>
     </section>
   );
