@@ -8,10 +8,10 @@ import Header from "@/components/Header";
 import FadeIn from "@/components/FadeIn";
 import OrganicDivider from "@/components/OrganicDivider";
 import WhatsAppFloat from "@/components/WhatsAppFloat";
-import { site, whatsappUrl, buildInterestMessage, buildReservationMessage } from "@/lib/site";
+import { site, whatsappUrl, buildInterestMessage } from "@/lib/site";
 import { createLead } from "@/lib/leads";
 import { isSupabaseConfigured } from "@/lib/supabase";
-import { ArrowRight, ChevronDown, ChevronLeft, ChevronRight, Sparkles, Heart, Eye, Music2, Users, Brain, Palette, TreePine, Check, ExternalLink, GraduationCap, MapPin, Calendar, Clock, MessageCircle } from "lucide-react";
+import { ArrowRight, ChevronDown, ChevronLeft, ChevronRight, Sparkles, Heart, Eye, Music2, Users, Brain, Palette, TreePine, Check, ExternalLink, GraduationCap } from "lucide-react";
 import { AnimatePresence, motion } from "framer-motion";
 import { useEffect, useState } from "react";
 
@@ -569,106 +569,41 @@ function LocaisSection() {
   return (
     <section id="locais" className="relative bg-[#F5F0E8] py-20 lg:py-32">
       <div className="container">
-        <FadeIn className="text-center max-w-2xl mx-auto mb-16">
+        <FadeIn className="text-center max-w-2xl mx-auto mb-12">
           <p className="text-[#C4704B] font-body text-sm tracking-[0.2em] uppercase mb-4 font-medium">
             Locais
           </p>
           <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl text-[#3D2E1C] leading-tight mb-6">
-            Onde o MOVIC{" "}
-            <span className="italic text-[#C4704B]">já acontece</span>
+            Novos espaços{" "}
+            <span className="italic text-[#C4704B]">em breve</span>
           </h2>
           <p className="text-[#3D2E1C]/60 text-lg font-body">
-            Turmas presenciais em espaços parceiros. Escolha o local e reserve
-            sua vaga pelo WhatsApp.
+            Estamos preparando as próximas turmas presenciais em espaços
+            parceiros. Deixe seu contato e receba as novidades em primeira mão.
           </p>
         </FadeIn>
 
-        <div
-          className={`grid gap-6 mx-auto ${
-            site.locais.length === 1 ? "max-w-3xl" : "lg:grid-cols-2 max-w-6xl"
-          }`}
-        >
-          {site.locais.map((local, i) => (
-            <FadeIn key={local.id} delay={i * 0.1} className="h-full">
-              <article className="h-full flex flex-col sm:flex-row sm:items-center bg-white/70 backdrop-blur-sm border border-[#D4C5B0]/50 rounded-3xl overflow-hidden shadow-sm hover:shadow-md hover:border-[#C4704B]/25 transition-all duration-500">
-                <div className="sm:w-[48%] flex-shrink-0 flex items-center justify-center bg-white p-1 sm:p-1.5 border-b sm:border-b-0 sm:border-r border-[#D4C5B0]/40">
-                  <img
-                    src={local.logo}
-                    alt={`Logo ${local.name}`}
-                    loading="lazy"
-                    decoding="async"
-                    className="w-full h-auto object-contain"
-                  />
-                </div>
-
-                <div className="flex-1 flex flex-col p-6 sm:p-7">
-                  <div className="flex items-start justify-between gap-3 mb-4">
-                    <div>
-                      <h3 className="font-display text-xl text-[#3D2E1C] mb-1">
-                        {local.name}
-                      </h3>
-                      <p className="text-[#7A8B6F] font-body text-sm">
-                        {local.neighborhood} · {local.city}
-                      </p>
-                    </div>
-                    <span className="flex-shrink-0 bg-[#C4704B] text-white px-3.5 py-1.5 rounded-full text-xs font-semibold tracking-[0.12em] uppercase shadow-sm shadow-[#C4704B]/25">
-                      {local.status}
-                    </span>
-                  </div>
-
-                  <ul className="space-y-3.5 mb-6 flex-1">
-                    <li>
-                      <a
-                        href={local.mapsUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="flex items-start gap-3 group"
-                      >
-                        <MapPin className="w-4 h-4 text-[#C4704B] mt-0.5 flex-shrink-0" />
-                        <span className="text-[#3D2E1C]/70 font-body text-sm leading-relaxed group-hover:text-[#C4704B] transition-colors underline-offset-2 group-hover:underline">
-                          {local.address}
-                        </span>
-                      </a>
-                    </li>
-                    <li className="flex items-start gap-3">
-                      <Calendar className="w-4 h-4 text-[#C4704B] mt-0.5 flex-shrink-0" />
-                      <span className="text-[#3D2E1C]/70 font-body text-sm leading-relaxed">
-                        {local.startDate}
-                        <span className="block text-[#3D2E1C]/50 mt-0.5">
-                          {local.schedule}
-                        </span>
-                      </span>
-                    </li>
-                    <li className="flex items-start gap-3">
-                      <Clock className="w-4 h-4 text-[#C4704B] mt-0.5 flex-shrink-0" />
-                      <span className="text-[#3D2E1C]/70 font-body text-sm leading-relaxed">
-                        {local.duration} por encontro
-                      </span>
-                    </li>
-                    <li className="flex items-baseline gap-2 pt-1">
-                      <span className="font-display text-2xl text-[#3D2E1C]">
-                        {local.price}
-                      </span>
-                      <span className="text-[#3D2E1C]/45 font-body text-sm">
-                        / {local.priceNote}
-                      </span>
-                    </li>
-                  </ul>
-
-                  <a
-                    href={whatsappUrl(buildReservationMessage(local.name))}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center justify-center gap-2 w-full bg-[#C4704B] text-white px-6 py-3.5 rounded-full text-sm font-medium hover:bg-[#B06040] transition-all duration-300 hover:shadow-lg hover:shadow-[#C4704B]/25 active:scale-[0.98]"
-                  >
-                    <MessageCircle className="w-4 h-4" />
-                    Reservar no WhatsApp
-                  </a>
-                </div>
-              </article>
-            </FadeIn>
-          ))}
-        </div>
+        <FadeIn delay={0.1} className="max-w-xl mx-auto">
+          <div className="text-center bg-white/70 backdrop-blur-sm border border-[#D4C5B0]/50 rounded-3xl px-8 py-10 sm:px-12 sm:py-12 shadow-sm">
+            <span className="inline-block bg-[#C4704B]/15 text-[#C4704B] px-4 py-1.5 rounded-full text-xs font-semibold tracking-[0.12em] uppercase mb-5">
+              Em breve
+            </span>
+            <p className="text-[#3D2E1C]/70 font-body text-base leading-relaxed mb-8">
+              Novas turmas e espaços parceiros estão a caminho. Seja a primeira
+              pessoa a saber quando as inscrições abrirem.
+            </p>
+            <a
+              href="#contato"
+              className="inline-flex items-center justify-center gap-2 bg-[#C4704B] text-white px-7 py-3.5 rounded-full text-sm font-medium hover:bg-[#B06040] transition-all duration-300 hover:shadow-lg hover:shadow-[#C4704B]/25 active:scale-[0.98]"
+            >
+              Quero ser avisado
+              <ArrowRight size={16} />
+            </a>
+            <p className="mt-4 text-[#3D2E1C]/40 font-body text-sm">
+              Leva menos de 1 minuto
+            </p>
+          </div>
+        </FadeIn>
       </div>
     </section>
   );
