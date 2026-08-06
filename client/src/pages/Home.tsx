@@ -971,7 +971,8 @@ function ContatoSection() {
     if (!formData.nome.trim()) newErrors.nome = "Informe seu nome";
     if (!formData.email.trim()) newErrors.email = "Informe seu e-mail";
     else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) newErrors.email = "E-mail inválido";
-    if (!formData.interesse) newErrors.interesse = "Selecione seu interesse";
+    if (!formData.telefone.trim()) newErrors.telefone = "Informe seu telefone";
+    if (!formData.interesse) newErrors.interesse = "Selecione o público de interesse";
     return newErrors;
   };
 
@@ -1100,7 +1101,7 @@ function ContatoSection() {
                     htmlFor="nome"
                     className="block text-white/80 text-sm font-body font-medium mb-1.5"
                   >
-                    Nome completo *
+                    Nome completo
                   </label>
                   <input
                     type="text"
@@ -1129,7 +1130,7 @@ function ContatoSection() {
                     htmlFor="email"
                     className="block text-white/80 text-sm font-body font-medium mb-1.5"
                   >
-                    E-mail *
+                    E-mail
                   </label>
                   <input
                     type="email"
@@ -1170,8 +1171,17 @@ function ContatoSection() {
                     value={formData.telefone}
                     onChange={handleChange}
                     placeholder="(00) 00000-0000"
-                    className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white font-body placeholder:text-white/30 focus:outline-none focus:ring-2 focus:ring-[#C4704B]/30 focus:border-[#C4704B]/40 transition-all duration-300"
+                    className={`w-full bg-white/5 border rounded-xl px-4 py-3 text-white font-body placeholder:text-white/30 focus:outline-none focus:ring-2 transition-all duration-300 ${
+                      errors.telefone
+                        ? "border-red-400/50 focus:ring-red-400/30"
+                        : "border-white/10 focus:ring-[#C4704B]/30 focus:border-[#C4704B]/40"
+                    }`}
                   />
+                  {errors.telefone && (
+                    <p className="text-red-400 text-xs mt-1 font-body">
+                      {errors.telefone}
+                    </p>
+                  )}
                 </div>
 
                 {/* Interesse */}
@@ -1180,7 +1190,7 @@ function ContatoSection() {
                     htmlFor="interesse"
                     className="block text-white/80 text-sm font-body font-medium mb-1.5"
                   >
-                    Seu interesse *
+                    Público de interesse
                   </label>
                   <select
                     id="interesse"
